@@ -1,15 +1,25 @@
 const router = require('express').Router()
 const {
-    getAllAnimals, getAnimalById, createAnimal
+    getAllAnimals,
+    getAnimalById,
+    createAnimal,
+    deleteAnimal,
+    updateAnimal
 } = require('../controllers/Animal')
 
-//get all animals
+// get all Animals
 router.get('/all', getAllAnimals)
 
-//get animnal by id
+//get Animal by ID
 router.get('/:id', getAnimalById)
 
-//create animal
+// create animal
 router.post('/', createAnimal)
+
+// delete animal
+router.delete('/:id', deleteAnimal)
+
+// update animal
+router.put('/:id', updateAnimal)
 
 module.exports = router

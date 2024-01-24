@@ -6,11 +6,11 @@ const animalRoutes = require('./routes/Animal')
 
 const app = express()
 
-//middlewares
+// middlewares
 app.use(cors())
 app.use(express.json())
 
-//routes
+// routes
 app.use('/animals', animalRoutes)
 
 // db connection

@@ -32,8 +32,34 @@ async function createAnimal(req, res) {
     }
 }
 
+async function deleteAnimal(req, res) {
+    try {
+        const { id } = req.params
+        await Animal.findByIdAndDelete(id)
+        res.json({ message: 'animal deleted' })
+    } catch (error) {
+        console.log('error deleting animal', error)
+        res.status(500).json({ message: 'error deleting animal' })
+    }
+}
+
+async function updateAnimal(req, res) {
+    try {
+        const { id } = req.params
+        if (!req.body.profilePicture) req.body.profilePicture = undefined
+        // const animal = await Animal.findByIdAndUpdate(id, req.body)
+        const animal = await Animal.findOneAndUpdate({ _id: id }, req.body)
+        res.json(animal)
+    } catch (error) {
+        console.log('error updating animal', error)
+        res.status(500).json({ message: 'error updating animal' })
+    }
+}
+
 module.exports = {
     getAllAnimals,
     getAnimalById,
-    createAnimal
+    createAnimal,
+    deleteAnimal,
+    updateAnimal
 }
